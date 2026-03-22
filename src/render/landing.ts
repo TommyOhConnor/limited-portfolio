@@ -30,13 +30,12 @@ function renderWorkRow(row: WorkIndexRow): HTMLElement {
     const a = document.createElement('a');
     a.className = 'work-title-link';
     a.href = `#/work/${row.slug}`;
-    a.textContent = row.title + '  ';
+    a.textContent = row.title;
     titles.appendChild(a);
   } else {
-    titles.appendChild(document.createTextNode(row.title + '  '));
+    titles.appendChild(document.createTextNode(row.title));
   }
-  const cat = el('span', 'work-category', row.category);
-  titles.appendChild(cat);
+  titles.appendChild(el('span', 'work-category', row.category));
 
   main.append(year, titles);
 

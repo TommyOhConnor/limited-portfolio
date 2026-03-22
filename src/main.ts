@@ -34,6 +34,8 @@ function render() {
       ? `${study.headline} — Tommy O'Connor`
       : "Project — Tommy O'Connor";
   }
+
+  window.scrollTo(0, 0);
 }
 
 window.addEventListener('hashchange', render);

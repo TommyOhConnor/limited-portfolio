@@ -7,6 +7,7 @@
   --text-sm: 14px;
   --leading-tight: 1.25;
   --leading-body: 1.4;
+  --link-underline-duration: 0.45s;
 }
 
 *,
@@ -32,13 +33,30 @@ body {
   min-height: 100vh;
 }
 
+.text-link,
+.work-title-link,
+a.detail-sidebar-title {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color var(--link-underline-duration) ease;
+}
+
 .text-link {
   color: var(--color-link);
-  text-decoration: none;
 }
 
 .text-link:hover {
-  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-link) 42%, transparent);
+}
+
+.work-title-link {
+  color: inherit;
+}
+
+.work-title-link:hover {
+  text-decoration-color: color-mix(in srgb, var(--color-text) 38%, transparent);
 }
 
 /* ——— Landing (spacing from Figma 151:452) ——— */
@@ -188,16 +206,8 @@ body {
   min-width: 0;
 }
 
-.work-title-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.work-title-link:hover {
-  text-decoration: underline;
-}
-
 .work-category {
+  margin-left: 0.85rem;
   color: var(--color-muted);
 }
 
@@ -280,6 +290,12 @@ body {
     transform: none;
     transition: none;
     will-change: auto;
+  }
+
+  .text-link,
+  .work-title-link,
+  a.detail-sidebar-title {
+    transition: none;
   }
 }
 
@@ -405,11 +421,10 @@ body {
 .detail-sidebar-title {
   font-weight: 400;
   color: inherit;
-  text-decoration: none;
 }
 
-.detail-sidebar-title:hover {
-  text-decoration: underline;
+a.detail-sidebar-title:hover {
+  text-decoration-color: color-mix(in srgb, var(--color-text) 38%, transparent);
 }
 
 .detail-sidebar-category {
