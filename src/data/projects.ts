@@ -13,10 +13,11 @@ export type WorkIndexRow = {
 export const workIndex: WorkIndexRow[] = [
   {
     year: '2026',
-    title: 'Design system update',
+    title: 'Meraki DS Update',
     category: 'Design system',
     client: 'Pfizer',
     clientColumn: 'narrow',
+    slug: 'meraki-ds-update',
   },
   {
     year: '',
@@ -65,8 +66,38 @@ export type CaseStudy = {
 const tnfBase = '/assets/TNF';
 const hoverBase = '/assets/Hover';
 const cardsBase = '/assets/Cards';
+const merakiBase = '/assets/meraki';
 
 export const caseStudies: Record<string, CaseStudy> = {
+  'meraki-ds-update': {
+    slug: 'meraki-ds-update',
+    headline: 'Meraki DS Update - Pfizer',
+    type: 'Design system',
+    description:
+      "A design system update with a twist. After refreshing Meraki's 60+ component library, I used Cursor to convert everything into React components and packaged the system as an npm module — making it instantly consumable by AI-native tools like Figma Make and Cursor. Design systems built for how work actually happens now.",
+    gallery: [
+      {
+        src: `${merakiBase}/Cards - FIN.png`,
+        caption:
+          'Card components built to flex across layout contexts without losing visual consistency.',
+      },
+      {
+        src: `${merakiBase}/Form - FIN.png`,
+        caption:
+          'Form elements designed for clarity under pressure — inputs, selects, and states that just work.',
+      },
+      {
+        src: `${merakiBase}/Storybook 1 - FIN.png`,
+        caption:
+          'The full component library living in Storybook, documented and ready to build with.',
+      },
+      {
+        src: `${merakiBase}/Storybook 2 - FIN.png`,
+        caption:
+          'Design tokens exposed in Storybook — the single source of truth for color, type, and spacing.',
+      },
+    ],
+  },
   'motel-key-card-generator': {
     slug: 'motel-key-card-generator',
     headline: 'Motel Key Card Generator - Self',
