@@ -1,4 +1,14 @@
-import { caseStudies, groupWorkByYear, workIndex, type WorkIndexRow } from '../data/projects';
+import {
+  caseStudies,
+  groupWorkByYear,
+  workIndex,
+  type CaseStudyGalleryItem,
+  type WorkIndexRow,
+} from '../data/projects';
+
+function isGalleryCycle(item: CaseStudyGalleryItem): item is Extract<CaseStudyGalleryItem, { cycleFrames: [string, string] }> {
+  return 'cycleFrames' in item && Array.isArray(item.cycleFrames) && item.cycleFrames.length === 2;
+}
 
 function el<K extends keyof HTMLElementTagNameMap>(
   tag: K,
@@ -134,13 +144,51 @@ export function renderDetail(container: HTMLElement, slug: string) {
   for (const item of study.gallery) {
     const fig = el('figure', 'detail-figure');
     const frame = el('div', 'detail-shot-frame');
-    const img = document.createElement('img');
-    img.src = encodeURI(item.src);
-    img.alt = '';
-    img.className = 'detail-shot';
-    frame.appendChild(img);
-    shotFrames.push(frame);
-    shotImgs.push(img);
+
+    if (isGalleryCycle(item)) {
+      const cycleWrap = el('div', 'detail-shot-cycle');
+      const [srcA, srcB] = item.cycleFrames;
+      const intervalMs = item.cycleIntervalMs ?? 2000;
+
+      const imgA = document.createElement('img');
+      imgA.src = encodeURI(srcA);
+      imgA.alt = '';
+      imgA.className = 'detail-shot detail-shot--cycle is-cycle-active';
+
+      const imgB = document.createElement('img');
+      imgB.src = encodeURI(srcB);
+      imgB.alt = '';
+      imgB.className = 'detail-shot detail-shot--cycle';
+
+      cycleWrap.append(imgA, imgB);
+      frame.appendChild(cycleWrap);
+      shotFrames.push(frame);
+      shotImgs.push(imgA, imgB);
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let showingFirst = true;
+        const timer = window.setInterval(() => {
+          if (!imgA.isConnected) {
+            clearInterval(timer);
+            return;
+          }
+          showingFirst = !showingFirst;
+          imgA.classList.toggle('is-cycle-active', showingFirst);
+          imgB.classList.toggle('is-cycle-active', !showingFirst);
+        }, intervalMs);
+      } else {
+        imgB.style.display = 'none';
+      }
+    } else {
+      const img = document.createElement('img');
+      img.src = encodeURI(item.src);
+      img.alt = '';
+      img.className = 'detail-shot';
+      frame.appendChild(img);
+      shotFrames.push(frame);
+      shotImgs.push(img);
+    }
+
     const cap = el('figcaption', 'detail-caption', item.caption);
     fig.append(frame, cap);
     mediaStack.appendChild(fig);

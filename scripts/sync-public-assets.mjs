@@ -11,6 +11,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 /** [source under assets/, dest under public/assets/] */
 const mappings = [
   ['Cards', 'Cards'],
+  ['Hemasense', 'Hemasense'],
   ['Hover', 'Hover'],
   ['Misc', 'Misc'],
   ['TNF', 'TNF'],

@@ -285,6 +285,27 @@ a.detail-sidebar-title {
   vertical-align: middle;
 }
 
+.detail-shot-cycle {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.detail-shot-cycle .detail-shot--cycle.is-cycle-active {
+  position: relative;
+  z-index: 1;
+}
+
+.detail-shot-cycle .detail-shot--cycle:not(.is-cycle-active) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .detail-shot-frame.detail-shot-frame--scroll-reveal {
     transform: none;
