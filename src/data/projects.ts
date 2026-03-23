@@ -27,17 +27,19 @@ export const workIndex: WorkIndexRow[] = [
   },
   {
     year: '',
-    title: 'AI Stipple Card Generator',
+    title: 'Motel Key Card Generator',
     category: 'AI Exploration  ↗',
     client: 'Self',
     clientColumn: 'wide',
+    slug: 'motel-key-card-generator',
   },
   {
     year: '',
-    title: 'Link Hover Generator',
+    title: 'Link Hover Interaction',
     category: 'AI Exploration  ↗',
     client: 'Self',
     clientColumn: 'wide',
+    slug: 'link-hover-interaction',
   },
   {
     year: '2025',
@@ -54,12 +56,53 @@ export type CaseStudy = {
   headline: string;
   type: string;
   description: string;
+  /** Optional live demo / product link (shown after description on detail page) */
+  tryItUrl?: string;
+  tryItLabel?: string;
   gallery: { src: string; caption: string }[];
 };
 
 const tnfBase = '/assets/TNF';
+const hoverBase = '/assets/Hover';
+const cardsBase = '/assets/Cards';
 
 export const caseStudies: Record<string, CaseStudy> = {
+  'motel-key-card-generator': {
+    slug: 'motel-key-card-generator',
+    headline: 'Motel Key Card Generator - Self',
+    type: 'AI Exploration',
+    description:
+      "This one started as a stipple pattern generator — a visual experiment for my portfolio that didn't quite land. Rather than scrap it, I repurposed the tool into a guest card generator for a fictitious hotel called The Motel. Built with Cursor and Claude Code, it's a small example of how AI-assisted builds make pivoting cheap and exploration worth it.",
+    tryItUrl: 'https://guest-card-generator.vercel.app/',
+    tryItLabel: 'Try it out',
+    gallery: [
+      {
+        src: `${cardsBase}/Landing Page - FIN.png`,
+        caption:
+          'Landing view of the generator: configure and preview guest key cards for The Motel.',
+      },
+      {
+        src: `${cardsBase}/Cards - FIN.png`,
+        caption: 'So many room keys!',
+      },
+    ],
+  },
+  'link-hover-interaction': {
+    slug: 'link-hover-interaction',
+    headline: 'Link Hover Interaction - Self',
+    type: 'AI Exploration',
+    description:
+      'An AI-assisted experiment exploring how small variables shape the feel of a single interaction. Built with Cursor, this playground lets you tweak font, color, size, and speed in real time — a fast way to feel the difference between a link that whispers and one that snaps.',
+    tryItUrl: 'https://hover-effect-generator.vercel.app/',
+    tryItLabel: 'Try it out',
+    gallery: [
+      {
+        src: `${hoverBase}/Landing Page - FIN.png`,
+        caption:
+          'The playground UI: adjust typography, color, circle size, transition speed, and growth to compare hover treatments side by side.',
+      },
+    ],
+  },
   'tnf-wear-tester': {
     slug: 'tnf-wear-tester',
     headline: 'Wear tester dashboard - The North Face',

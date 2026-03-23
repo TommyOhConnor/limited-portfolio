@@ -167,6 +167,17 @@ export function renderDetail(container: HTMLElement, slug: string) {
   );
   const headBlock = el('div', 'detail-head');
   headBlock.append(titleStack, el('p', 'detail-description', study.description));
+  if (study.tryItUrl) {
+    const tryRow = el('p', 'detail-try-it');
+    const tryLink = document.createElement('a');
+    tryLink.className = 'text-link';
+    tryLink.href = study.tryItUrl;
+    tryLink.textContent = study.tryItLabel ?? 'Try it out';
+    tryLink.target = '_blank';
+    tryLink.rel = 'noopener noreferrer';
+    tryRow.appendChild(tryLink);
+    headBlock.appendChild(tryRow);
+  }
 
   const introPanel = el('div', 'detail-intro-panel');
   introPanel.append(back, headBlock);

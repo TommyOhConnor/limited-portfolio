@@ -372,6 +372,11 @@ a.detail-sidebar-title {
   line-height: var(--leading-body);
 }
 
+.detail-try-it {
+  margin: 0;
+  line-height: var(--leading-body);
+}
+
 .detail-work-nav {
   margin-top: 88px;
   display: flex;
