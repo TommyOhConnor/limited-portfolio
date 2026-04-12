@@ -697,7 +697,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 0 20px;
+  padding: 0;
 }
 
 .csm-img-wrap {
@@ -719,6 +719,7 @@ body {
   font-weight: 300;
   line-height: 1.5;
   color: var(--color-text);
+  padding: 0 20px;
 }
 
 .csm-scroll-pad {
