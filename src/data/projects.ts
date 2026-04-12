@@ -134,28 +134,28 @@ export const caseStudies: Record<string, CaseStudy> = {
       "HemaSense is an early bleed detection patch for post-surgical recovery — and this is the tablet interface that talks to it. Designed for clinical environments where information has to land at a glance from varying distances, and where accidental touches to critical functions aren't an option. Currently in clinical trials.",
     gallery: [
       {
-        src: `${hemasenseBase}/HS - 1.png`,
+        src: `${hemasenseBase}/Base - One Patch.png`,
         caption:
           'The base state — vitals monitored, patch connected, nothing demanding attention.',
         fit: 'contain',
         align: 'left',
       },
       {
-        src: `${hemasenseBase}/HS - 2.png`,
+        src: `${hemasenseBase}/Alarm On - High Severity.png`,
         caption:
           'A disconnected patch triggers a staged warning sequence designed to be read instantly from across the room.',
         fit: 'contain',
         align: 'right',
       },
       {
-        src: `${hemasenseBase}/HS - 3.png`,
+        src: `${hemasenseBase}/Histogram.png`,
         caption:
           'Histogram of recent readings — a quick way to see how values cluster and whether anything is drifting out of range.',
         fit: 'contain',
         align: 'left',
       },
       {
-        src: `${hemasenseBase}/HS - 4.png`,
+        src: `${hemasenseBase}/Alarm Off - High Severity.png`,
         caption: '',
         fit: 'contain',
         align: 'left',
@@ -200,10 +200,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     tryItUrl: 'https://guest-card-generator.vercel.app/',
     tryItLabel: 'Try it out',
     gallery: [
-      { src: `${cardsBase}/KC - 1.png`, caption: '', fit: 'contain', align: 'left' },
-      { src: `${cardsBase}/KC - 2.png`, caption: '', fit: 'contain', align: 'right' },
-      { videoSrc: `${cardsBase}/KC-3.mp4`, caption: '', fit: 'contain', align: 'left' },
-      { src: `${cardsBase}/KC - 4.png`, caption: '', fit: 'contain', align: 'right' },
+      { src: `${cardsBase}/Landing Page - FIN.png`, caption: '', fit: 'contain', align: 'left' },
+      { src: `${cardsBase}/Cards - FIN.png`, caption: '', fit: 'contain', align: 'right' },
     ],
   },
   'link-hover-interaction': {
@@ -215,8 +213,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tryItUrl: 'https://hover-effect-generator.vercel.app/',
     tryItLabel: 'Try it out',
     gallery: [
-      { src: `${hoverBase}/HOV - 1.png`, caption: '', fit: 'contain', align: 'left' },
-      { videoSrc: `${hoverBase}/HOV - 2.mp4`, caption: '', fit: 'contain', align: 'right' },
+      { src: `${hoverBase}/Landing Page - FIN.png`, caption: '', fit: 'contain', align: 'left' },
     ],
   },
   'brand-marks': {
@@ -241,21 +238,21 @@ export const caseStudies: Record<string, CaseStudy> = {
       "Designed an internal tool for The North Face's wear tester team to track athlete performance and surface actionable insights from Apple Watch data. Previously reliant on manual surveys and spreadsheets, the new platform streamlined data collection and gave the team a real-time view of how gear performed in the field. The project proved successful enough that leadership began exploring how key features could be adapted for a broader customer loyalty program.",
     gallery: [
       {
-        src: `${tnfBase}/TNF - 1.png`,
+        src: `${tnfBase}/Landing Page - FIN.png`,
         caption:
           'Program member growth tracked over time — a key metric for gauging loyalty program adoption and momentum.',
         fit: 'contain',
         align: 'left',
       },
       {
-        src: `${tnfBase}/TNF - 2.png`,
+        src: `${tnfBase}/Athletes - FIN.png`,
         caption:
           'A filterable data table giving the wear tester team a detailed view of each athlete and their performance data, with advanced filtering to cut through the noise.',
         fit: 'contain',
         align: 'left',
       },
       {
-        src: `${tnfBase}/TNF - 3.png`,
+        src: `${tnfBase}/Graphs - FIN.png`,
         caption:
           'Dual data visualizations — activity by sport and program member growth — surfacing how gear performs across disciplines.',
         fit: 'contain',
