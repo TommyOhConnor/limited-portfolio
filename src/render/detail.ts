@@ -84,7 +84,7 @@ export function renderDetail(container: HTMLElement, slug: string) {
   backBtn.type = 'button';
   backBtn.setAttribute('aria-label', 'Back to work');
   const backIcon = document.createElement('img');
-  backIcon.src = '/assets/Misc/back-arrow.svg';
+  backIcon.src = `${import.meta.env.BASE_URL}assets/Misc/back-arrow.svg`;
   backIcon.alt = '';
   backIcon.setAttribute('aria-hidden', 'true');
   backIcon.className = 'cs-back-icon';

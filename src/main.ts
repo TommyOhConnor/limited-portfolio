@@ -70,6 +70,8 @@ function render() {
   }
 }
 
-inject();
+if (location.hostname.endsWith('.vercel.app')) {
+  inject();
+}
 window.addEventListener('hashchange', render);
 render();

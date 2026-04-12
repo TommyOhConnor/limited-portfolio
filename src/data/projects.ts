@@ -117,12 +117,13 @@ export type CaseStudy = {
   gallery: CaseStudyGalleryItem[];
 };
 
-const tnfBase = '/assets/TNF';
-const bmBase = '/assets/Brandmarks';
-const hoverBase = '/assets/Hover';
-const cardsBase = '/assets/Cards';
-const merakiBase = '/assets/meraki';
-const hemasenseBase = '/assets/Hemasense';
+const assetsBase = `${import.meta.env.BASE_URL}assets`;
+const tnfBase = `${assetsBase}/TNF`;
+const bmBase = `${assetsBase}/Brandmarks`;
+const hoverBase = `${assetsBase}/Hover`;
+const cardsBase = `${assetsBase}/Cards`;
+const merakiBase = `${assetsBase}/meraki`;
+const hemasenseBase = `${assetsBase}/Hemasense`;
 
 export const caseStudies: Record<string, CaseStudy> = {
   'post-op-bleed-monitor': {

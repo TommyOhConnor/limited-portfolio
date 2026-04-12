@@ -1,6 +1,7 @@
 import { Rive, Layout, Fit, Alignment, RuntimeLoader } from '@rive-app/webgl2';
 
-RuntimeLoader.setWasmUrl('/rive.wasm');
+const baseUrl = import.meta.env.BASE_URL;
+RuntimeLoader.setWasmUrl(`${baseUrl}rive.wasm`);
 
 export interface NameRevealControls {
   setDark(isDark: boolean): void;
@@ -15,7 +16,7 @@ export function initNameReveal(canvas: HTMLCanvasElement): NameRevealControls {
   let isDarkProp: any = null;
 
   const r = new Rive({
-    src: '/assets/name-reveal.riv',
+    src: `${baseUrl}assets/name-reveal.riv`,
     canvas,
     autoplay: false,
     autoBind: true,

@@ -166,14 +166,15 @@ export function renderLanding(container: HTMLElement) {
 
   // Hero
   const hero = el('div', 'landing-hero');
+  const assetsBase = `${import.meta.env.BASE_URL}assets`;
 
   const photo = document.createElement('img');
-  photo.src = '/assets/profile.png';
+  photo.src = `${assetsBase}/profile.png`;
   photo.alt = site.name;
   photo.className = 'landing-hero-photo';
 
   const photoDark = document.createElement('img');
-  photoDark.src = '/assets/profile-dark.png';
+  photoDark.src = `${assetsBase}/profile-dark.png`;
   photoDark.alt = site.name;
   photoDark.className = 'landing-hero-photo landing-hero-photo--dark';
 
