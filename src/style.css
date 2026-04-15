@@ -329,7 +329,7 @@ body {
 }
 
 .about-contact-email {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
@@ -360,7 +360,7 @@ body {
 }
 
 .about-x-handle {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
@@ -400,6 +400,21 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
+}
+
+.cs-rive-panel {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-rive-canvas {
+  display: block;
+  pointer-events: auto;
+  touch-action: none;
 }
 
 /* Sidebar — fixed right, top aligned with tallest image (set inline by JS) */
@@ -710,6 +725,21 @@ body {
   display: block;
   width: 100%;
   object-fit: cover;
+}
+
+.csm-rive-panel {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.csm-rive-canvas {
+  display: block;
+  pointer-events: auto;
+  touch-action: none;
 }
 
 .csm-caption {

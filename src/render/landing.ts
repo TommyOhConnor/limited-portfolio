@@ -102,6 +102,22 @@ function renderAboutPanel(): HTMLElement {
   panel.setAttribute('aria-hidden', 'true');
 
   const bio = el('div', 'landing-about-bio');
+  const appendWithInlineEmphasis = (target: HTMLElement, text: string) => {
+    const tokens = text.split(/(\*[^*]+\*|_[^_]+_)/g);
+    for (const token of tokens) {
+      if (!token) continue;
+      if (
+        (token.startsWith('*') && token.endsWith('*'))
+        || (token.startsWith('_') && token.endsWith('_'))
+      ) {
+        const em = document.createElement('em');
+        em.textContent = token.slice(1, -1);
+        target.appendChild(em);
+      } else {
+        target.appendChild(document.createTextNode(token));
+      }
+    }
+  };
 
   for (const p of site.aboutBio.paragraphs) {
     if (p === null) {
@@ -114,7 +130,9 @@ function renderAboutPanel(): HTMLElement {
       para.appendChild(document.createTextNode(after));
       bio.appendChild(para);
     } else {
-      bio.appendChild(el('p', 'about-bio-p', p));
+      const para = el('p', 'about-bio-p');
+      appendWithInlineEmphasis(para, p);
+      bio.appendChild(para);
     }
   }
 

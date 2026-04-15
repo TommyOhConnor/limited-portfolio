@@ -48,7 +48,7 @@ export const aiWorkIndex: WorkIndexRow[] = [
 export const productWorkIndex: WorkIndexRow[] = [
   {
     year: '2025',
-    title: 'Post-op Internal Bleed Monitor',
+    title: 'Internal Bleed Monitor',
     category: 'Healthcare product design',
     client: 'Hemasense',
     clientColumn: 'wide',
@@ -104,7 +104,22 @@ export type CaseStudyGalleryVideo = {
   align?: 'left' | 'center' | 'right';
 };
 
-export type CaseStudyGalleryItem = CaseStudyGalleryStill | CaseStudyGalleryCycle | CaseStudyGalleryVideo;
+/** Interactive Rive panel */
+export type CaseStudyGalleryRive = {
+  riveSrc: string;
+  caption: string;
+  panelWidth?: number;
+  panelHeight?: number;
+  panelBg?: string;
+  /** Optional state machine to drive interactive playback */
+  stateMachine?: string;
+};
+
+export type CaseStudyGalleryItem =
+  | CaseStudyGalleryStill
+  | CaseStudyGalleryCycle
+  | CaseStudyGalleryVideo
+  | CaseStudyGalleryRive;
 
 export type CaseStudy = {
   slug: string;
@@ -128,7 +143,7 @@ const hemasenseBase = `${assetsBase}/Hemasense`;
 export const caseStudies: Record<string, CaseStudy> = {
   'post-op-bleed-monitor': {
     slug: 'post-op-bleed-monitor',
-    headline: 'Post-op Internal Bleed Monitor - Hemasense',
+    headline: 'Internal Bleed Monitor - Hemasense',
     type: 'Product Design',
     description:
       "HemaSense is an early bleed detection patch for post-surgical recovery — and this is the tablet interface that talks to it. Designed for clinical environments where information has to land at a glance from varying distances, and where accidental touches to critical functions aren't an option. Currently in clinical trials.",
@@ -248,11 +263,13 @@ export const caseStudies: Record<string, CaseStudy> = {
         align: 'left',
       },
       {
-        src: `${tnfBase}/TNF - 2.png`,
+        riveSrc: `${tnfBase}/tnf_line_graph.riv`,
         caption:
           'A filterable data table giving the wear tester team a detailed view of each athlete and their performance data, with advanced filtering to cut through the noise.',
-        fit: 'contain',
-        align: 'left',
+        panelWidth: 840,
+        panelHeight: 860,
+        panelBg: '#D1471B',
+        stateMachine: 'State Machine 1',
       },
       {
         src: `${tnfBase}/TNF - 3.png`,

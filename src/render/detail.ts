@@ -1,4 +1,11 @@
-import { caseStudies, workIndex, type CaseStudyGalleryVideo } from '../data/projects';
+import {
+  caseStudies,
+  workIndex,
+  type CaseStudyGalleryItem,
+  type CaseStudyGalleryRive,
+  type CaseStudyGalleryVideo,
+} from '../data/projects';
+import { Rive, Layout, Fit, Alignment } from '@rive-app/webgl2';
 
 const IMAGE_HEIGHT_STEP = 50;
 const SCROLL_PER_IMAGE = 200;
@@ -36,6 +43,8 @@ export function renderDetail(container: HTMLElement, slug: string) {
 
   const isVideo = (item: (typeof study.gallery)[number]): item is CaseStudyGalleryVideo =>
     'videoSrc' in item;
+  const isRive = (item: CaseStudyGalleryItem): item is CaseStudyGalleryRive =>
+    'riveSrc' in item;
 
   const imgEls: HTMLDivElement[] = study.gallery.map((item, i) => {
     const wrapper = el('div', 'cs-img-wrapper') as HTMLDivElement;
@@ -43,7 +52,40 @@ export function renderDetail(container: HTMLElement, slug: string) {
     wrapper.style.zIndex = String(i + 1);
     wrapper.style.transform = `translateY(${heights[i] + 1}px)`;
 
-    if (isVideo(item)) {
+    if (isRive(item)) {
+      const panel = el('div', 'cs-rive-panel') as HTMLDivElement;
+      panel.style.background = item.panelBg ?? '#D1471B';
+      const panelWidth = item.panelWidth ?? 840;
+      const panelHeight = item.panelHeight ?? 860;
+      panel.style.width = `min(100%, ${panelWidth}px)`;
+      panel.style.height = `min(100%, ${panelHeight}px)`;
+
+      const canvas = document.createElement('canvas');
+      canvas.className = 'cs-rive-canvas';
+      const artboardW = 638;
+      const artboardH = 424;
+      canvas.style.width = `${artboardW}px`;
+      canvas.style.height = `${artboardH}px`;
+      canvas.style.maxWidth = '100%';
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = artboardW * dpr;
+      canvas.height = artboardH * dpr;
+      panel.appendChild(canvas);
+      wrapper.appendChild(panel);
+
+      const rive = new Rive({
+        src: encodeURI(item.riveSrc),
+        canvas,
+        autoplay: true,
+        autoBind: true,
+        stateMachines: item.stateMachine ?? undefined,
+        isTouchScrollEnabled: true,
+        layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
+        onLoad: () => {
+          rive.resizeDrawingSurfaceToCanvas();
+        },
+      });
+    } else if (isVideo(item)) {
       const video = document.createElement('video');
       video.src = encodeURI(item.videoSrc);
       video.className = 'cs-img';

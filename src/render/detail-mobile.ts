@@ -4,9 +4,11 @@ import {
   aiWorkIndex,
   productWorkIndex,
   type CaseStudyGalleryItem,
+  type CaseStudyGalleryRive,
   type CaseStudyGalleryVideo,
 } from '../data/projects';
 import { renderWorkSection } from './landing';
+import { Rive, Layout, Fit, Alignment } from '@rive-app/webgl2';
 
 function el<K extends keyof HTMLElementTagNameMap>(
   tag: K,
@@ -21,6 +23,8 @@ function el<K extends keyof HTMLElementTagNameMap>(
 
 const isVideo = (item: CaseStudyGalleryItem): item is CaseStudyGalleryVideo =>
   'videoSrc' in item;
+const isRive = (item: CaseStudyGalleryItem): item is CaseStudyGalleryRive =>
+  'riveSrc' in item;
 
 export function renderDetailMobile(container: HTMLElement, slug: string) {
   const study = caseStudies[slug];
@@ -77,7 +81,40 @@ export function renderDetailMobile(container: HTMLElement, slug: string) {
   for (const item of study.gallery) {
     const wrap = el('div', 'csm-img-wrap');
 
-    if (isVideo(item)) {
+    if (isRive(item)) {
+      const panel = el('div', 'csm-rive-panel');
+      const panelWidth = item.panelWidth ?? 840;
+      const panelHeight = item.panelHeight ?? 860;
+      panel.style.background = item.panelBg ?? '#D1471B';
+      panel.style.width = `min(100%, ${panelWidth}px)`;
+      panel.style.height = `min(100%, ${panelHeight}px)`;
+
+      const canvas = document.createElement('canvas');
+      canvas.className = 'csm-rive-canvas';
+      const artboardW = 638;
+      const artboardH = 424;
+      canvas.style.width = `${artboardW}px`;
+      canvas.style.height = `${artboardH}px`;
+      canvas.style.maxWidth = '100%';
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = artboardW * dpr;
+      canvas.height = artboardH * dpr;
+      panel.appendChild(canvas);
+      wrap.appendChild(panel);
+
+      const rive = new Rive({
+        src: encodeURI(item.riveSrc),
+        canvas,
+        autoplay: true,
+        autoBind: true,
+        stateMachines: item.stateMachine ?? undefined,
+        isTouchScrollEnabled: true,
+        layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
+        onLoad: () => {
+          rive.resizeDrawingSurfaceToCanvas();
+        },
+      });
+    } else if (isVideo(item)) {
       const video = document.createElement('video');
       video.src = encodeURI(item.videoSrc);
       video.className = 'csm-media';
