@@ -1,5 +1,4 @@
 import './style.css';
-import { inject } from '@vercel/analytics';
 import { renderLanding } from './render/landing';
 import { renderDetail } from './render/detail';
 import { renderDetailMobile } from './render/detail-mobile';
@@ -70,8 +69,5 @@ function render() {
   }
 }
 
-if (location.hostname.endsWith('.vercel.app')) {
-  inject();
-}
 window.addEventListener('hashchange', render);
 render();
